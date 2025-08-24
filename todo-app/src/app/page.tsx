@@ -6,6 +6,7 @@ type Todo = {
   name: string;
   description: string;
   date: string;
+  status: "active" | "terminated";
 };
 
 export default function Home() {
@@ -16,11 +17,22 @@ export default function Home() {
 
   const addTodo = () => {
     if (name && description && date) {
-      setTodos([...todos, { name, description, date }]);
+      setTodos([...todos, { name, description, date, status: "active" }]);
       setName("");
       setDescription("");
       setDate("");
     }
+  };
+
+  const terminateTodo = (index: number) => {
+    const newTodos = [...todos];
+    newTodos[index].status = "terminated";
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = (index: number) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
   };
 
   return (
@@ -58,10 +70,25 @@ export default function Home() {
           </div>
           <ul className="space-y-4">
             {todos.map((todo, index) => (
-              <li key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <li key={index} className={`p-4 rounded-lg border border-gray-200 ${todo.status === "terminated" ? "bg-gray-300" : "bg-gray-50"}`}>
                 <h2 className="text-xl font-semibold text-gray-700">{todo.name}</h2>
                 <p className="text-gray-600 mt-2">{todo.description}</p>
                 <p className="text-sm text-gray-500 mt-2">{new Date(todo.date).toLocaleString()}</p>
+                <div className="flex justify-end gap-2 mt-4">
+                  <button
+                    onClick={() => terminateTodo(index)}
+                    disabled={todo.status === "terminated"}
+                    className="bg-yellow-500 text-white p-2 rounded-lg hover:bg-yellow-600 disabled:bg-gray-400 transition-colors duration-300"
+                  >
+                    Terminate
+                  </button>
+                  <button
+                    onClick={() => deleteTodo(index)}
+                    className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors duration-300"
+                  >
+                    Delete
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
