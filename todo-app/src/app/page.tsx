@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type Todo = {
   name: string;
@@ -70,7 +71,7 @@ export default function Home() {
           </div>
           <ul className="space-y-4">
             {todos.map((todo, index) => (
-              <li key={index} className={`p-4 rounded-lg border border-gray-200 ${todo.status === "terminated" ? "bg-gray-300" : "bg-gray-50"}`}>
+              <li key={index} className={`p-4 rounded-lg border border-gray-200 ${todo.status === "terminated" ? "bg-green-200" : "bg-gray-50"}`}>
                 <h2 className="text-xl font-semibold text-gray-700">{todo.name}</h2>
                 <p className="text-gray-600 mt-2">{todo.description}</p>
                 <p className="text-sm text-gray-500 mt-2">{new Date(todo.date).toLocaleString()}</p>
@@ -80,13 +81,13 @@ export default function Home() {
                     disabled={todo.status === "terminated"}
                     className="bg-yellow-500 text-white p-2 rounded-lg hover:bg-yellow-600 disabled:bg-gray-400 transition-colors duration-300"
                   >
-                    Terminate
+                    <Image src="/terminate.svg" alt="Terminate" width={20} height={20} />
                   </button>
                   <button
                     onClick={() => deleteTodo(index)}
                     className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors duration-300"
                   >
-                    Delete
+                    <Image src="/delete.svg" alt="Delete" width={20} height={20} />
                   </button>
                 </div>
               </li>
