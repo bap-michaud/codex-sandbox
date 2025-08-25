@@ -60,6 +60,39 @@ sequenceDiagram
     TodoList-->>User: Shows updated list
 ```
 
+## Sequence Diagram: Terminating a Todo
+
+This diagram shows the sequence of events that occur when a user terminates a todo item.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant TodoItem
+    participant State
+
+    User->>TodoItem: Clicks "Terminate" button
+    TodoItem->>State: Updates state of todo to "terminated"
+    State-->>TodoItem: Re-renders with updated status
+    TodoItem-->>User: Shows terminated todo
+```
+
+## Sequence Diagram: Deleting a Todo
+
+This diagram shows the sequence of events that occur when a user deletes a todo item.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant TodoItem
+    participant TodoList
+    participant State
+
+    User->>TodoItem: Clicks "Delete" button
+    TodoItem->>State: Removes todo from state
+    State-->>TodoList: Re-renders without the todo
+    TodoList-->>User: Shows updated list
+```
+
 
 ## Getting Started
 
