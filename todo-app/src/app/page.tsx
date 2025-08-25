@@ -60,6 +60,7 @@ export default function Home() {
               value={date}
               onChange={(e) => setDate(e.target.value)}
               className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              data-testid="date-input"
             />
             <button
               onClick={addTodo}
