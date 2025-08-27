@@ -81,12 +81,16 @@ export default function Home() {
                     onClick={() => terminateTodo(index)}
                     disabled={todo.status === "terminated"}
                     className="bg-yellow-500 text-white p-2 rounded-lg hover:bg-yellow-600 disabled:bg-gray-400 transition-colors duration-300"
+                    id={`terminate-button-${index}`}
+                    data-testid={`terminate-button-${index}`}
                   >
                     <Image src="/terminate.svg" alt="Terminate" width={20} height={20} />
                   </button>
                   <button
                     onClick={() => deleteTodo(index)}
                     className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors duration-300"
+                    id={`delete-button-${index}`}
+                    data-testid={`delete-button-${index}`}
                   >
                     <Image src="/delete.svg" alt="Delete" width={20} height={20} />
                   </button>
