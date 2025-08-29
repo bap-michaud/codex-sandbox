@@ -85,7 +85,7 @@ jobs:
           cd ..
 
       - name: Wait for application to start
-        run: sleep 30 # Wait 30 seconds for the server to start
+        run: sleep 60 # Wait 60 seconds for the server to start
 
       - name: DAST Scan (OWASP ZAP)
         uses: zaproxy/action-baseline@v0.7.0
@@ -95,7 +95,7 @@ jobs:
           gen_file: 'report.html'
 
       - name: Upload DAST Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always() # Upload the report even if the scan fails
         with:
           name: zap-report
