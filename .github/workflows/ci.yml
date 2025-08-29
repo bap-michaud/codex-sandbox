@@ -15,7 +15,7 @@ jobs:
         working-directory: ./todo-app
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -48,7 +48,7 @@ jobs:
     needs: test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -70,6 +70,8 @@ jobs:
           config_path: .gitleaks.toml
           report_format: sarif
           report_path: gitleaks-report.sarif
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: SAST Scan (Semgrep)
         uses: semgrep/semgrep-action@v1
