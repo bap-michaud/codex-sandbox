@@ -38,7 +38,7 @@ describe('Home', () => {
     fireEvent.change(dateInput, { target: { value: '2023-01-01T12:00' } });
     fireEvent.click(addButton);
 
-    const terminateButton = screen.getByText(/Terminate/i);
+    const terminateButton = screen.getByTestId('terminate-button-0'); // Adjusted to use test ID;
     fireEvent.click(terminateButton);
 
     expect(terminateButton).toBeDisabled();
@@ -56,7 +56,7 @@ describe('Home', () => {
     fireEvent.change(dateInput, { target: { value: '2023-01-01T12:00' } });
     fireEvent.click(addButton);
 
-    const deleteButton = screen.getByText(/Delete/i);
+    const deleteButton = screen.getByTestId('delete-button-0'); // Adjusted to use test ID;
     fireEvent.click(deleteButton);
 
     const todoName = screen.queryByText(/Test Todo/i);

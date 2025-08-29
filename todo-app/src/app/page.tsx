@@ -39,22 +39,22 @@ export default function Home() {
   return (
     <main className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4 sm:p-6 lg:p-8">
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6">
+        <div className="w-full mx-auto bg-white rounded-lg shadow-lg p-6">
           <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Todo App</h1>
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
             <input
               type="text"
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
               type="text"
               placeholder="Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <input
               type="datetime-local"
@@ -81,12 +81,16 @@ export default function Home() {
                     onClick={() => terminateTodo(index)}
                     disabled={todo.status === "terminated"}
                     className="bg-yellow-500 text-white p-2 rounded-lg hover:bg-yellow-600 disabled:bg-gray-400 transition-colors duration-300"
+                    id={`terminate-button-${index}`}
+                    data-testid={`terminate-button-${index}`}
                   >
                     <Image src="/terminate.svg" alt="Terminate" width={20} height={20} />
                   </button>
                   <button
                     onClick={() => deleteTodo(index)}
                     className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors duration-300"
+                    id={`delete-button-${index}`}
+                    data-testid={`delete-button-${index}`}
                   >
                     <Image src="/delete.svg" alt="Delete" width={20} height={20} />
                   </button>
